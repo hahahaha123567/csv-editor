@@ -1,0 +1,25 @@
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane fx:id="body"
+            fx:controller="csv.Controller"
+            stylesheets="/csv/csv.css"
+            xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <MenuBar fx:id="menuBar">
+            <Menu fx:id="menuFile" text="File">
+                <MenuItem fx:id="itemOpen" text="Open" onAction="#handleOpenAction"/>
+                <MenuItem fx:id="itemSave" text="Save" onAction="#handleSaveAction"/>
+                <MenuItem fx:id="itemSaveAs" text="Save as" onAction="#handleSaveAsAction"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <ImageView>
+            <Image fx:id="pic" url="@/image/kami.jpg"/>
+        </ImageView>
+    </center>
+</BorderPane>
