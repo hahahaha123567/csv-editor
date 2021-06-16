@@ -9,13 +9,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Controller {
+
+    private static final Logger logger = Logger.getLogger(Controller.class.getName());
+    @FXML
+    public Image pic;
     @FXML
     private BorderPane body;
     @FXML
@@ -57,7 +63,7 @@ public class Controller {
             alert.showAndWait();
             return;
         }
-        CSVWriter writer = null;
+        CSVWriter writer;
         try {
             writer = new CSVWriter(new FileWriter(file));
             List<String[]> list = data.getData();
@@ -97,7 +103,7 @@ public class Controller {
     private void loadData () {
         CSVReader reader = null;
         try {
-            System.out.println(file.getName());
+            logger.info("load file: " + file.getName());
             reader = new CSVReader(new FileReader(file));
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);

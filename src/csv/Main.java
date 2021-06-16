@@ -7,7 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.InputStream;
+import java.util.logging.Logger;
+
 public class Main extends Application {
+
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
@@ -19,7 +25,12 @@ public class Main extends Application {
         controller.setMain(this);
 
         primaryStage.setTitle("CSV Reader");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/image/honoka.jpg")));
+        InputStream resource = getClass().getResourceAsStream("/image/honoka.jpg");
+        if (resource == null) {
+            logger.severe("init error");
+            return;
+        }
+        primaryStage.getIcons().add(new Image(resource));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

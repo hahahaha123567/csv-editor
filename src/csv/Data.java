@@ -8,9 +8,13 @@ import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 class Data {
-    private CSVReader reader;
+
+    private static final Logger logger = Logger.getLogger(Data.class.getName());
+
+    private final CSVReader reader;
     int rowNum, columnNum;
     private List<StringProperty[]> propertyList;
 
@@ -66,12 +70,13 @@ class Data {
     }
 
     void testPrint () {
+        StringBuilder sb = new StringBuilder();
         for (StringProperty[] strArray : propertyList) {
             for (StringProperty str : strArray) {
-                System.out.print(str.getValue() + " ");
+                sb.append(str.getValue()).append(" ");
             }
-            System.out.println();
+            sb.append("\n");
         }
-        System.out.println();
+        logger.info(sb.toString());
     }
 }
